@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest
+    package="com.eagle.mediapicker"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- 在SDCard中创建与删除文件权限 -->
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"/>
+    <!-- 往SDCard写入数据权限 -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <!-- 从SDCard读取数据权限 -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+
+    <application
+        android:allowBackup="true"
+        android:supportsRtl="true">
+        <activity android:name="com.eagle.mediapicker.ui.MediaBaseActivity"/>
+        <activity
+            android:name="com.eagle.mediapicker.ui.MediaGridActivity"
+            android:theme="@style/MediaPickerTheme"/>
+        <activity
+            android:name="com.eagle.mediapicker.ui.MediaCropActivity"
+            android:theme="@style/MediaPickerTheme"/>
+        <activity
+            android:name="com.eagle.mediapicker.ui.MediaPreviewActivity"
+            android:theme="@style/MediaPickerThemeFullScreen"/>
+    </application>
+
+</manifest>
