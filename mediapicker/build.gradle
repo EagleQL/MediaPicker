@@ -51,4 +51,4 @@ dependencies {
     compile 'com.shuyu:gsyVideoPlayer-x86:6.0.1'
 }
 
-apply from: '../bintray.gradle'
+//apply from: '../bintray.gradle'
