@@ -86,7 +86,7 @@ public class MediaFolderAdapter extends BaseAdapter {
         holder.folderName.setText(folder.name);
         holder.imageCount.setText(mActivity.getString(R.string.folder_image_count, folder.medias.size()));
         // fixme 此处如果是视频或音频，则需要应用另外的图片加载机制
-        mediaPicker.getMediaLoader().displayImage(mActivity, folder.cover.path != null ? folder.cover.path : "", holder.cover, mImageSize, mImageSize);
+        mediaPicker.getImageLoader().displayImage(mActivity, folder.cover.path != null ? folder.cover.path : "", holder.cover, mImageSize, mImageSize);
 
         if (lastSelected == position) {
             holder.folderCheck.setVisibility(View.VISIBLE);

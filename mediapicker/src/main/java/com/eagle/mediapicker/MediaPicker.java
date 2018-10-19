@@ -10,7 +10,7 @@ import android.provider.MediaStore;
 
 import com.eagle.mediapicker.bean.MediaFolder;
 import com.eagle.mediapicker.bean.MediaItem;
-import com.eagle.mediapicker.loader.MediaLoader;
+import com.eagle.mediapicker.loader.ImageLoader;
 import com.eagle.mediapicker.view.CropImageView;
 
 import java.io.File;
@@ -43,7 +43,7 @@ public class MediaPicker {
     private int outPutY = 800;           //裁剪保存高度
     private int focusWidth = 280;         //焦点框的宽度
     private int focusHeight = 280;        //焦点框的高度
-    private MediaLoader mediaLoader;     //图片加载器
+    private ImageLoader imageLoader;     //图片加载器
     private CropImageView.Style style = CropImageView.Style.RECTANGLE; //裁剪框的形状
     private File cropCacheFolder;
     private File takeMediaFile;
@@ -157,12 +157,12 @@ public class MediaPicker {
         this.cropCacheFolder = cropCacheFolder;
     }
 
-    public MediaLoader getMediaLoader() {
-        return mediaLoader;
+    public ImageLoader getImageLoader() {
+        return imageLoader;
     }
 
-    public void setMediaLoader(MediaLoader mediaLoader) {
-        this.mediaLoader = mediaLoader;
+    public void setImageLoader(ImageLoader imageLoader) {
+        this.imageLoader = imageLoader;
     }
 
     public CropImageView.Style getStyle() {

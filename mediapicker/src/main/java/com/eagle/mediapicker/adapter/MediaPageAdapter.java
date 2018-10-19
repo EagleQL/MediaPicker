@@ -69,7 +69,7 @@ public class MediaPageAdapter extends PagerAdapter {
         final MediaItem mediaItem = medias.get(position);
         if (mediaItem.isPic()) {
             PhotoView photoView = new PhotoView(mActivity);
-            mediaPicker.getMediaLoader().displayImage(mActivity, mediaItem.path, photoView, screenWidth, screenHeight);
+            mediaPicker.getImageLoader().displayImage(mActivity, mediaItem.path, photoView, screenWidth, screenHeight);
             photoView.setOnPhotoTapListener(new PhotoViewAttacher.OnPhotoTapListener() {
                 @Override
                 public void onPhotoTap(View view, float x, float y) {

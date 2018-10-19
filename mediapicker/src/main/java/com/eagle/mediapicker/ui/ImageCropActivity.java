@@ -16,7 +16,7 @@ import com.eagle.mediapicker.view.CropImageView;
 import java.io.File;
 import java.util.ArrayList;
 
-public class MediaCropActivity extends MediaBaseActivity implements View.OnClickListener, CropImageView.OnBitmapSaveCompleteListener {
+public class ImageCropActivity extends MediaBaseActivity implements View.OnClickListener, CropImageView.OnBitmapSaveCompleteListener {
 
     private CropImageView mCropImageView;
     private Bitmap mBitmap;

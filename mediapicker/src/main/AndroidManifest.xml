@@ -18,7 +18,7 @@
             android:name="com.eagle.mediapicker.ui.MediaGridActivity"
             android:theme="@style/MediaPickerTheme"/>
         <activity
-            android:name="com.eagle.mediapicker.ui.MediaCropActivity"
+            android:name="com.eagle.mediapicker.ui.ImageCropActivity"
             android:theme="@style/MediaPickerTheme"/>
         <activity
             android:name="com.eagle.mediapicker.ui.MediaPreviewActivity"

@@ -12,9 +12,9 @@ package com.eagle.mediapickerdemo;
 import android.app.Activity;
 import android.widget.ImageView;
 
-import com.eagle.mediapicker.loader.MediaLoader;
+import com.eagle.mediapicker.loader.ImageLoader;
 
-public class XUtils3MediaLoader implements MediaLoader {
+public class XUtils3ImageLoader implements ImageLoader {
     @Override
     public void displayImage(Activity activity, String path, ImageView imageView, int width, int height) {
 //        ImageOptions options = new ImageOptions.Builder()

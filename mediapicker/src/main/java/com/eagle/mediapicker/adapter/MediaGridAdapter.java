@@ -198,7 +198,7 @@ public class MediaGridAdapter extends BaseAdapter {
                         .into(holder.ivThumb);
             }
             else {
-                mediaPicker.getMediaLoader().displayImage(mActivity, mediaItem.path, holder.ivThumb, mMediaSize, mMediaSize); //显示图片
+                mediaPicker.getImageLoader().displayImage(mActivity, mediaItem.path, holder.ivThumb, mMediaSize, mMediaSize); //显示图片
             }
         }
         if (medias.size() < 10 && position + 1 == medias.size()) onMediaRenderListener.OnMediaRenderFinished(position + 1);

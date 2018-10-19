@@ -9,23 +9,19 @@ package com.eagle.mediapickerdemo;
  * 修订历史：
  * ================================================
  */
+
 import android.app.Activity;
 import android.widget.ImageView;
 
-import com.eagle.mediapicker.loader.MediaLoader;
+import com.eagle.mediapicker.loader.ImageLoader;
+import com.eagle.mediapickerdemo.image.ImageLoadFactory;
+import com.eagle.mediapickerdemo.image.UniversalDisplayOptions;
 
-public class PicassoMediaLoader implements MediaLoader {
+public class UILImageLoader implements ImageLoader {
 
     @Override
     public void displayImage(Activity activity, String path, ImageView imageView, int width, int height) {
-//        Picasso.with(activity)
-//                .load(new File(path))
-//                .placeholder(R.mipmap.default_image)
-//                .error(R.mipmap.default_image)
-//                .resize(width, height)
-//                .centerInside()
-//                .memoryPolicy(MemoryPolicy.NO_CACHE, MemoryPolicy.NO_STORE)
-//                .into(imageView);
+        ImageLoadFactory.getInstance().getImageLoadHandler().displayImage("file://" + path, imageView, UniversalDisplayOptions.create(R.mipmap.default_image));
     }
 
     @Override

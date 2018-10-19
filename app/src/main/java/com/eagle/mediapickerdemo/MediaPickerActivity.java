@@ -23,7 +23,7 @@ import android.widget.Toast;
 import com.eagle.mediapicker.MediaDataSource;
 import com.eagle.mediapicker.MediaPicker;
 import com.eagle.mediapicker.bean.MediaItem;
-import com.eagle.mediapicker.loader.GlideMediaLoader;
+import com.eagle.mediapicker.loader.GlideImageLoader;
 import com.eagle.mediapicker.ui.MediaGridActivity;
 import com.eagle.mediapicker.view.CropImageView;
 import com.eagle.mediapickerdemo.image.ImageLoadFactory;
@@ -60,7 +60,7 @@ public class MediaPickerActivity extends AppCompatActivity implements SeekBar.On
         ImageLoadFactory.init(this);
         
         mediaPicker = MediaPicker.getInstance();
-        mediaPicker.setMediaLoader(new GlideMediaLoader());
+        mediaPicker.setImageLoader(new GlideImageLoader());
 
         rb_uil = (RadioButton) findViewById(R.id.rb_uil);
         rb_glide = (RadioButton) findViewById(R.id.rb_glide);
@@ -113,14 +113,14 @@ public class MediaPickerActivity extends AppCompatActivity implements SeekBar.On
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_open_gallery:
-                if (rb_uil.isChecked()) mediaPicker.setMediaLoader(new UILMediaLoader());
-                else if (rb_glide.isChecked()) mediaPicker.setMediaLoader(new GlideMediaLoader());
+                if (rb_uil.isChecked()) mediaPicker.setImageLoader(new UILImageLoader());
+                else if (rb_glide.isChecked()) mediaPicker.setImageLoader(new GlideImageLoader());
                 else if (rb_picasso.isChecked())
-                    mediaPicker.setMediaLoader(new PicassoMediaLoader());
-                else if (rb_fresco.isChecked()) mediaPicker.setMediaLoader(new GlideMediaLoader());
+                    mediaPicker.setImageLoader(new PicassoImageLoader());
+                else if (rb_fresco.isChecked()) mediaPicker.setImageLoader(new GlideImageLoader());
                 else if (rb_xutils3.isChecked())
-                    mediaPicker.setMediaLoader(new XUtils3MediaLoader());
-                else if (rb_xutils.isChecked()) mediaPicker.setMediaLoader(new GlideMediaLoader());
+                    mediaPicker.setImageLoader(new XUtils3ImageLoader());
+                else if (rb_xutils.isChecked()) mediaPicker.setImageLoader(new GlideImageLoader());
 
                 if (rb_single_select.isChecked()) mediaPicker.setMultiMode(false);
                 else if (rb_muti_select.isChecked()) mediaPicker.setMultiMode(true);
@@ -236,7 +236,7 @@ public class MediaPickerActivity extends AppCompatActivity implements SeekBar.On
             } else {
                 imageView = (ImageView) convertView;
             }
-            mediaPicker.getMediaLoader().displayImage(MediaPickerActivity.this, getItem(position).path, imageView, size, size);
+            mediaPicker.getImageLoader().displayImage(MediaPickerActivity.this, getItem(position).path, imageView, size, size);
             return imageView;
         }
     }

@@ -306,7 +306,7 @@ public class MediaGridActivity extends MediaBaseActivity implements MediaDataSou
             mediaPicker.clearSelectedMedias(); // mark 此处清除了之前的选择
             mediaPicker.addSelectedMediaItem(position, mediaPicker.getCurrentMediaFolderItems().get(position), true);
             if (mediaPicker.isCrop() && this.mediaType == MediaDataSource.PIC) {
-                Intent intent = new Intent(MediaGridActivity.this, MediaCropActivity.class);
+                Intent intent = new Intent(MediaGridActivity.this, ImageCropActivity.class);
                 startActivityForResult(intent, MediaPicker.REQUEST_CODE_CROP);  //单选需要裁剪，进入裁剪界面
             } else {
                 Intent intent = new Intent();
@@ -377,7 +377,7 @@ public class MediaGridActivity extends MediaBaseActivity implements MediaDataSou
             //如果是图片裁剪，因为裁剪指定了存储的Uri，所以返回的data一定为null
             if (resultCode == RESULT_OK && requestCode == MediaPicker.REQUEST_CODE_TAKE_PHOTO) {
                 if (mediaPicker.isCrop() && this.mediaType == MediaDataSource.PIC) {
-                    Intent intent = new Intent(MediaGridActivity.this, MediaCropActivity.class);
+                    Intent intent = new Intent(MediaGridActivity.this, ImageCropActivity.class);
                     startActivityForResult(intent, MediaPicker.REQUEST_CODE_CROP);  //需要裁剪，进入裁剪界面
                 } else {
                     Intent intent = new Intent();
