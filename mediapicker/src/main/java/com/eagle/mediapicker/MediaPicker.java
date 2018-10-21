@@ -51,10 +51,10 @@ public class MediaPicker {
     private File takeMediaFile;
     public Bitmap cropBitmap;
 
-    private ArrayList<MediaItem> mSelectedMedias = new ArrayList<>();   //选中的图片集合
-    private List<MediaFolder> mMediaFolders;      //所有的图片文件夹
+    private ArrayList<MediaItem> mSelectedMedias = new ArrayList<>();   //选中的集合
+    private List<MediaFolder> mMediaFolders;      //所有的媒体文件文件夹
     private int mCurrentMediaFolderPosition = 0;  //当前选中的文件夹位置 0表示所有图片
-    private List<OnMediaSelectedListener> mMediaSelectedListeners;          // 图片选中的监听回调
+    private List<OnMediaSelectedListener> mMediaSelectedListeners;          // 媒体选中的监听回调
 
     private static MediaPicker mInstance;
 
@@ -72,11 +72,78 @@ public class MediaPicker {
         return mInstance;
     }
 
+    public class builder {
+
+        public MediaPicker build() {
+            return mInstance;
+        }
+
+        public builder showCamera(boolean 是否显示拍摄按钮) {
+            mInstance.setShowCamera(是否显示拍摄按钮);
+            return this;
+        }
+
+        public builder imageloader(ImageLoader 图片加载器) {
+            mInstance.setImageLoader(new GlideImageLoader());
+            return this;
+        }
+
+        public builder multiMode(boolean 多选模式) {
+            mInstance.setMultiMode(多选模式);
+            return this;
+        }
+
+        public builder selectLimit(int 选择数量上限) {
+            mInstance.setSelectLimit(选择数量上限);
+            return this;
+        }
+
+        public builder crop(boolean 是否剪裁图片) {
+            mInstance.setCrop(是否剪裁图片);
+            return this;
+        }
+
+        public builder style(CropImageView.Style 剪裁形状) {
+            mInstance.setStyle(剪裁形状);
+            return this;
+        }
+
+        public builder saveRectangle(int 矩形剪裁宽度, int 矩形剪裁高度) {
+            mInstance.setSaveRectangle(true);
+            mInstance.setStyle(CropImageView.Style.RECTANGLE);
+            Activity activity = new Activity();
+            int width = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 矩形剪裁宽度, activity.getResources().getDisplayMetrics());
+            int height = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 矩形剪裁高度, activity.getResources().getDisplayMetrics());
+            mInstance.setFocusWidth(width);
+            mInstance.setFocusHeight(height);
+            return this;
+        }
+
+        public builder saveCircle(float 圆形剪裁半径){
+            mInstance.setSaveRectangle(false);
+            mInstance.setStyle(CropImageView.Style.CIRCLE);
+            Activity activity = new Activity();
+            int mradius = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 圆形剪裁半径, activity.getResources().getDisplayMetrics());
+            mInstance.setFocusWidth(mradius * 2);
+            mInstance.setFocusHeight(mradius * 2);
+            return this;
+        }
+
+        public builder outPutScale(int 图片保存宽度, int 图片保存高度) {
+            mInstance.setOutPutX(图片保存宽度);
+            mInstance.setOutPutY(图片保存高度);
+            return this;
+        }
+
+
+    }
+
+    @Deprecated
     public MediaPicker config(ImageLoader 图片加载器, boolean 多选模式, int 选择数量上限, boolean 是否剪裁图片,
-                                  CropImageView.Style 剪裁形状, float 圆形剪裁半径,
-                                  int 矩形剪裁宽度, int 矩形剪裁高度, boolean 是否按矩形区域保存剪裁图片,
-                                  int 图片保存宽度, int 图片保存高度,
-                                  boolean 是否显示拍摄按钮) {
+                              CropImageView.Style 剪裁形状, float 圆形剪裁半径,
+                              int 矩形剪裁宽度, int 矩形剪裁高度, boolean 是否按矩形区域保存剪裁图片,
+                              int 图片保存宽度, int 图片保存高度,
+                              boolean 是否显示拍摄按钮) {
         mInstance.setImageLoader(new GlideImageLoader());
         mInstance.setMultiMode(多选模式);
         mInstance.setSelectLimit(选择数量上限);
@@ -86,7 +153,7 @@ public class MediaPicker {
         mInstance.setSaveRectangle(是否按矩形区域保存剪裁图片);
         Activity activity = new Activity();
         if (剪裁形状.equals(CropImageView.Style.RECTANGLE)) {
-            int width = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 矩形剪裁宽度,activity.getResources().getDisplayMetrics());
+            int width = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 矩形剪裁宽度, activity.getResources().getDisplayMetrics());
             int height = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 矩形剪裁高度, activity.getResources().getDisplayMetrics());
             mInstance.setFocusWidth(width);
             mInstance.setFocusHeight(height);
@@ -259,7 +326,9 @@ public class MediaPicker {
         mCurrentMediaFolderPosition = 0;
     }
 
-    /** 拍照的方法 */
+    /**
+     * 拍照的方法
+     */
     public void takePicture(Activity activity, int requestCode) {
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         takePictureIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -278,12 +347,13 @@ public class MediaPicker {
         }
         activity.startActivityForResult(takePictureIntent, requestCode);
     }
+
     /**
-     * @Description  视频拍摄
-     * @Author  eagle
-     * @Date  00:42 2018/10/19
-     * @Param
      * @return
+     * @Description 视频拍摄
+     * @Author eagle
+     * @Date 00:42 2018/10/19
+     * @Param
      **/
     public void recordVideo(Activity activity, int requestCode) {
         Intent recordVideoIntent = new Intent(MediaStore.ACTION_VIDEO_CAPTURE);
@@ -304,7 +374,9 @@ public class MediaPicker {
         activity.startActivityForResult(recordVideoIntent, requestCode);
     }
 
-    /** 根据系统时间、前缀、后缀产生一个文件 */
+    /**
+     * 根据系统时间、前缀、后缀产生一个文件
+     */
     public static File createFile(File folder, String prefix, String suffix) {
         if (!folder.exists() || !folder.isDirectory()) folder.mkdirs();
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.CHINA);
@@ -312,7 +384,9 @@ public class MediaPicker {
         return new File(folder, filename);
     }
 
-    /** 扫描媒体文件 */
+    /**
+     * 扫描媒体文件
+     */
     public static void galleryAddMedia(Context context, File file) {
         Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
         Uri contentUri = Uri.fromFile(file);
@@ -320,7 +394,9 @@ public class MediaPicker {
         context.sendBroadcast(mediaScanIntent);
     }
 
-    /** 图片选中的监听 */
+    /**
+     * 图片选中的监听
+     */
     public interface OnMediaSelectedListener {
         void onMediaSelected(int position, MediaItem item, boolean isAdd);
     }
