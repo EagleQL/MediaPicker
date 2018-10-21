@@ -5,7 +5,15 @@ import android.content.Intent;
 import com.eagle.mediapicker.bean.MediaItem;
 
 import java.util.List;
-
+/**
+ * 调用mediapicker以及相册请实现此接口
+ * <br>
+ * <br>
+ * by <font color='blue'><b>eagle</b></font>
+ * <br>
+ * 03:15 2018/10/22
+ * <br>
+ */
 interface IMediaPickerBaseActivity {
     int OPENGALLERAY = 100;
     int[] fullModes = new int[]{MediaDataSource.PIC, MediaDataSource.VIDEO, MediaDataSource.AUDIO};
