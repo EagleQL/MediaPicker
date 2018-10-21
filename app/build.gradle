@@ -30,6 +30,5 @@ dependencies {
     }
 
 
-//    compile 'com.lzy.widget:imagepicker:+'
     compile project(':mediapicker')
 }
