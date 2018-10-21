@@ -22,6 +22,17 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
+/**
+ * 多媒体选择器主类，负责管理多媒体数据和相册的配置。<br>
+ * 用户应该在数据接收页配置好此类并激活相册MediaGridActivity(需传入参数以决定相册显示哪些媒体内容),<br>
+ * 相册activity访问了本类以初始化相册以及保存数据<br>
+ * <br>
+ * <br>
+ * by <font color='blue'><b>eagle</b></font>
+ * <br>
+ * 02:40 2018/10/22
+ * <br>
+ */
 public class MediaPicker {
 
     public static final String TAG = MediaPicker.class.getSimpleName();
