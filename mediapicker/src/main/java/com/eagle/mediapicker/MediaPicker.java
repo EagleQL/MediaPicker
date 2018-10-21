@@ -82,36 +82,84 @@ public class MediaPicker {
             return mInstance;
         }
 
+        /**
+         * 默认为显示拍摄按钮
+         * @param 是否显示拍摄按钮
+         * @return
+         */
         public Builder showCamera(boolean 是否显示拍摄按钮) {
             mInstance.setShowCamera(是否显示拍摄按钮);
             return this;
         }
 
+        /**
+         * 必须指定
+         * @param 图片加载器
+         * @return
+         */
         public Builder imageloader(ImageLoader 图片加载器) {
             mInstance.setImageLoader(new GlideImageLoader());
             return this;
         }
 
+        /**
+         * 默认为多选
+         * @param 多选模式
+         * @return
+         */
         public Builder multiMode(boolean 多选模式) {
             mInstance.setMultiMode(多选模式);
             return this;
         }
 
+        /**
+         * 默认为最多选择9个媒体文件
+         * @param 选择数量上限
+         * @return
+         */
         public Builder selectLimit(int 选择数量上限) {
             mInstance.setSelectLimit(选择数量上限);
             return this;
         }
 
+        /**
+         * 默认为true
+         * @param 是否剪裁图片
+         * @return
+         */
         public Builder crop(boolean 是否剪裁图片) {
             mInstance.setCrop(是否剪裁图片);
             return this;
         }
 
+        /**
+         * 仅裁剪模式下有效。默认为false--以剪裁框形状保存图片。如传入true，则无论何种情况都以矩形保存图片
+         * @param 是否按矩形区域保存剪裁图片
+         * @return
+         */
         public Builder saveCropAsRectangle(boolean 是否按矩形区域保存剪裁图片) {
             mInstance.setSaveRectangle(是否按矩形区域保存剪裁图片);
             return this;
         }
 
+        /**
+         * 仅裁剪模式下有效。以指定的宽高保存剪裁图片
+         * @param 图片保存宽度
+         * @param 图片保存高度
+         * @return
+         */
+        public Builder outPutScale(int 图片保存宽度, int 图片保存高度) {
+            mInstance.setOutPutX(图片保存宽度);
+            mInstance.setOutPutY(图片保存高度);
+            return this;
+        }
+
+        /**
+         * 仅裁剪模式下有效。以指定宽高的矩形显示裁剪框
+         * @param 矩形剪裁宽度
+         * @param 矩形剪裁高度
+         * @return
+         */
         public Builder cropRectangle(int 矩形剪裁宽度, int 矩形剪裁高度) {
             mInstance.setStyle(CropImageView.Style.RECTANGLE);
             Activity activity = new Activity();
@@ -122,6 +170,11 @@ public class MediaPicker {
             return this;
         }
 
+        /**
+         * 仅裁剪模式下有效。以指定半径的圆形显示裁剪框
+         * @param 圆形剪裁半径
+         * @return
+         */
         public Builder cropCircle(float 圆形剪裁半径){
             mInstance.setStyle(CropImageView.Style.CIRCLE);
             Activity activity = new Activity();
@@ -130,13 +183,6 @@ public class MediaPicker {
             mInstance.setFocusHeight(mradius * 2);
             return this;
         }
-
-        public Builder outPutScale(int 图片保存宽度, int 图片保存高度) {
-            mInstance.setOutPutX(图片保存宽度);
-            mInstance.setOutPutY(图片保存高度);
-            return this;
-        }
-
 
     }
 
