@@ -18,13 +18,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * ================================================
- * 作    者：廖子尧
- * 版    本：1.0
- * 创建日期：2016/1/4
- * 描    述：
- * 修订历史：
- * ================================================
+ * 媒体文件夹列表适配器
+ * <br>
+ * <br>
+ * by <font color='blue'><b>eagle</b></font>
+ * <br>
+ * 01:04 2018/10/22
+ * <br>
  */
 public class MediaFolderAdapter extends BaseAdapter {
 
