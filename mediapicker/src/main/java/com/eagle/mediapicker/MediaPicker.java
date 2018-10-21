@@ -107,7 +107,7 @@ public class MediaPicker {
             return this;
         }
 
-        public Builder cropRectangle(boolean 是否按矩形区域保存剪裁图片) {
+        public Builder saveCropAsRectangle(boolean 是否按矩形区域保存剪裁图片) {
             mInstance.setSaveRectangle(是否按矩形区域保存剪裁图片);
             return this;
         }
