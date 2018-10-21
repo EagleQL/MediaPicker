@@ -133,7 +133,7 @@ public class MediaPicker {
         }
 
         /**
-         * 仅裁剪模式下有效。默认为false--以剪裁框形状保存图片。如传入true，则无论何种情况都以矩形保存图片
+         * 仅裁剪模式下有效。默认为false--以剪裁框形状保存图片。如传入true，则无论何种情况都以矩形保存图片。裁剪框默认是矩形
          * @param 是否按矩形区域保存剪裁图片
          * @return
          */
@@ -144,8 +144,8 @@ public class MediaPicker {
 
         /**
          * 仅裁剪模式下有效。以指定的宽高保存剪裁图片
-         * @param 图片保存宽度
-         * @param 图片保存高度
+         * @param 图片保存宽度 默认800
+         * @param 图片保存高度 默认800
          * @return
          */
         public Builder outPutScale(int 图片保存宽度, int 图片保存高度) {
@@ -155,9 +155,9 @@ public class MediaPicker {
         }
 
         /**
-         * 仅裁剪模式下有效。以指定宽高的矩形显示裁剪框
-         * @param 矩形剪裁宽度
-         * @param 矩形剪裁高度
+         * 仅裁剪模式下有效。以指定宽高的矩形显示裁剪框。裁剪框默认是矩形
+         * @param 矩形剪裁宽度 默认280
+         * @param 矩形剪裁高度 默认280
          * @return
          */
         public Builder cropRectangle(int 矩形剪裁宽度, int 矩形剪裁高度) {
@@ -171,8 +171,8 @@ public class MediaPicker {
         }
 
         /**
-         * 仅裁剪模式下有效。以指定半径的圆形显示裁剪框
-         * @param 圆形剪裁半径
+         * 仅裁剪模式下有效。以指定半径的圆形显示裁剪框.
+         * @param 圆形剪裁半径 无默认值
          * @return
          */
         public Builder cropCircle(float 圆形剪裁半径){
