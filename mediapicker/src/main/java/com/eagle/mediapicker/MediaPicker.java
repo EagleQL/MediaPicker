@@ -72,43 +72,34 @@ public class MediaPicker {
         return mInstance;
     }
 
-    public class builder {
+    public class Configer {
 
-        public MediaPicker build() {
-            return mInstance;
-        }
 
-        public builder showCamera(boolean 是否显示拍摄按钮) {
+        public void showCamera(boolean 是否显示拍摄按钮) {
             mInstance.setShowCamera(是否显示拍摄按钮);
-            return this;
         }
 
-        public builder imageloader(ImageLoader 图片加载器) {
+        public void imageloader(ImageLoader 图片加载器) {
             mInstance.setImageLoader(new GlideImageLoader());
-            return this;
         }
 
-        public builder multiMode(boolean 多选模式) {
+        public void multiMode(boolean 多选模式) {
             mInstance.setMultiMode(多选模式);
-            return this;
         }
 
-        public builder selectLimit(int 选择数量上限) {
+        public void selectLimit(int 选择数量上限) {
             mInstance.setSelectLimit(选择数量上限);
-            return this;
         }
 
-        public builder crop(boolean 是否剪裁图片) {
+        public void crop(boolean 是否剪裁图片) {
             mInstance.setCrop(是否剪裁图片);
-            return this;
         }
 
-        public builder style(CropImageView.Style 剪裁形状) {
+        public void style(CropImageView.Style 剪裁形状) {
             mInstance.setStyle(剪裁形状);
-            return this;
         }
 
-        public builder saveRectangle(int 矩形剪裁宽度, int 矩形剪裁高度) {
+        public void saveRectangle(int 矩形剪裁宽度, int 矩形剪裁高度) {
             mInstance.setSaveRectangle(true);
             mInstance.setStyle(CropImageView.Style.RECTANGLE);
             Activity activity = new Activity();
@@ -116,27 +107,29 @@ public class MediaPicker {
             int height = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 矩形剪裁高度, activity.getResources().getDisplayMetrics());
             mInstance.setFocusWidth(width);
             mInstance.setFocusHeight(height);
-            return this;
         }
 
-        public builder saveCircle(float 圆形剪裁半径){
+        public void saveCircle(float 圆形剪裁半径){
             mInstance.setSaveRectangle(false);
             mInstance.setStyle(CropImageView.Style.CIRCLE);
             Activity activity = new Activity();
             int mradius = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 圆形剪裁半径, activity.getResources().getDisplayMetrics());
             mInstance.setFocusWidth(mradius * 2);
             mInstance.setFocusHeight(mradius * 2);
-            return this;
         }
 
-        public builder outPutScale(int 图片保存宽度, int 图片保存高度) {
+        public void outPutScale(int 图片保存宽度, int 图片保存高度) {
             mInstance.setOutPutX(图片保存宽度);
             mInstance.setOutPutY(图片保存高度);
-            return this;
         }
 
 
     }
+
+    public Configer configer() {
+        return new Configer();
+    }
+
 
     @Deprecated
     public MediaPicker config(ImageLoader 图片加载器, boolean 多选模式, int 选择数量上限, boolean 是否剪裁图片,
