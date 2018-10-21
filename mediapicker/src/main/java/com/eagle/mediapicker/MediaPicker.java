@@ -107,12 +107,12 @@ public class MediaPicker {
             return this;
         }
 
-        public Builder saveRectangle(boolean 是否按矩形区域保存剪裁图片) {
+        public Builder cropRectangle(boolean 是否按矩形区域保存剪裁图片) {
             mInstance.setSaveRectangle(是否按矩形区域保存剪裁图片);
             return this;
         }
 
-        public Builder saveRectangle(int 矩形剪裁宽度, int 矩形剪裁高度) {
+        public Builder cropRectangle(int 矩形剪裁宽度, int 矩形剪裁高度) {
             mInstance.setStyle(CropImageView.Style.RECTANGLE);
             Activity activity = new Activity();
             int width = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 矩形剪裁宽度, activity.getResources().getDisplayMetrics());
@@ -122,7 +122,7 @@ public class MediaPicker {
             return this;
         }
 
-        public Builder saveCircle(float 圆形剪裁半径){
+        public Builder cropCircle(float 圆形剪裁半径){
             mInstance.setStyle(CropImageView.Style.CIRCLE);
             Activity activity = new Activity();
             int mradius = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 圆形剪裁半径, activity.getResources().getDisplayMetrics());
