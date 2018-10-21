@@ -7,9 +7,11 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.util.TypedValue;
 
 import com.eagle.mediapicker.bean.MediaFolder;
 import com.eagle.mediapicker.bean.MediaItem;
+import com.eagle.mediapicker.loader.GlideImageLoader;
 import com.eagle.mediapicker.loader.ImageLoader;
 import com.eagle.mediapicker.view.CropImageView;
 
@@ -67,6 +69,36 @@ public class MediaPicker {
                 }
             }
         }
+        return mInstance;
+    }
+
+    public MediaPicker config(ImageLoader 图片加载器, boolean 多选模式, int 选择数量上限, boolean 是否剪裁图片,
+                                  CropImageView.Style 剪裁形状, float 圆形剪裁半径,
+                                  int 矩形剪裁宽度, int 矩形剪裁高度, boolean 是否按矩形区域保存剪裁图片,
+                                  int 图片保存宽度, int 图片保存高度,
+                                  boolean 是否显示拍摄按钮) {
+        mInstance.setImageLoader(new GlideImageLoader());
+        mInstance.setMultiMode(多选模式);
+        mInstance.setSelectLimit(选择数量上限);
+        mInstance.setStyle(剪裁形状);
+
+        mInstance.setCrop(是否剪裁图片);
+        mInstance.setSaveRectangle(是否按矩形区域保存剪裁图片);
+        Activity activity = new Activity();
+        if (剪裁形状.equals(CropImageView.Style.RECTANGLE)) {
+            int width = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 矩形剪裁宽度,activity.getResources().getDisplayMetrics());
+            int height = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 矩形剪裁高度, activity.getResources().getDisplayMetrics());
+            mInstance.setFocusWidth(width);
+            mInstance.setFocusHeight(height);
+        } else if (剪裁形状.equals(CropImageView.Style.CIRCLE)) {
+            int mradius = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 圆形剪裁半径, activity.getResources().getDisplayMetrics());
+            mInstance.setFocusWidth(mradius * 2);
+            mInstance.setFocusHeight(mradius * 2);
+        }
+
+        mInstance.setOutPutX(图片保存宽度);
+        mInstance.setOutPutY(图片保存高度);
+        mInstance.setShowCamera(是否显示拍摄按钮);
         return mInstance;
     }
 
