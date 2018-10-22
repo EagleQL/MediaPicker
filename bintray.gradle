@@ -1,12 +1,13 @@
 apply plugin: 'com.github.dcendents.android-maven'
+//apply plugin: 'com.novoda.bintray-release' // 第二种上传方式
 apply plugin: 'com.jfrog.bintray'
-
-version = "1.0.2"              // 数据仓库依赖第三部分
+version = "1.1.2-release"              // 数据仓库依赖第三部分
 
 //def siteUrl = 'https://github.com/jeasonlzy0216/NineGridView'
 def siteUrl = 'https://gitee.com/eagleyes/MediaPicker'
 def gitUrl = 'https://gitee.com/eagleyes/MediaPicker.git'
-group = "com.eagle.android.widget"       // 数据仓库依赖第一部分
+group = "eagleyes.bintray.com"       // 数据仓库依赖第一部分
+
 
 install {
     repositories.mavenInstaller {
@@ -23,7 +24,7 @@ install {
                 }
                 developers {
                     developer {
-                        id 'thedog2y'                // 开发者信息
+                        id 'eagle'                // 开发者信息
                         name 'eaglefly'              // 开发者信息
                         email '289685629@qq.com'    // 开发者信息
                     }
@@ -37,6 +38,15 @@ install {
         }
     }
 }
+// 第二种上传方式
+//publish {
+//    userOrg = 'eagleyes'//bintray.com用户名
+//    groupId = 'com.eagle.android.widget'//jcenter上的路径，根据自己项目自定义填写
+//    artifactId = 'mediapicker'//项目名称
+//    publishVersion = '1.1.2-release'//版本号
+//    desc = 'Oh hi, this is a nice description for a project, right?'//描述，不重要
+//    website = siteUrl
+//}
 
 task sourcesJar(type: Jar) {
     from android.sourceSets.main.java.srcDirs
@@ -44,6 +54,7 @@ task sourcesJar(type: Jar) {
 }
 
 task javadoc(type: Javadoc) {
+    failOnError false
     source = android.sourceSets.main.java.srcDirs
     classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
 }
@@ -52,6 +63,12 @@ task javadocJar(type: Jar, dependsOn: javadoc) {
     classifier = 'javadoc'
     from javadoc.destinationDir
 }
+
+//拷贝javadoc文件
+//task copyDoc(type: Copy) {
+//    ​    from "${buildDir}/docs/"
+//    ​    into "docs"
+//}
 
 javadoc {
     options {
@@ -76,6 +93,7 @@ bintray {
     key = properties.getProperty("bintray.apikey")
     configurations = ['archives']
     pkg {
+        userOrg = 'eagleyes' //这个是你创建时的organization,必须要有，不然没办法找到指定路径
         repo = "maven"
         name = "mediapicker"             // 数据仓库依赖第二部分
         websiteUrl = siteUrl

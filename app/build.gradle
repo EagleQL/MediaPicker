@@ -30,5 +30,6 @@ dependencies {
     }
 
 
-    compile project(':mediapicker')
+//    compile project(':mediapicker')
+    compile 'com.gitee.eagleyes:MediaPicker:1.1.1-release1'
 }
