@@ -14,7 +14,7 @@ import java.util.List;
  * 03:15 2018/10/22
  * <br>
  */
-interface IMediaPickerBaseActivity {
+public interface IMediaPickerBaseActivity {
     int OPENGALLERAY = 100;
     int[] fullModes = new int[]{MediaDataSource.PIC, MediaDataSource.VIDEO, MediaDataSource.AUDIO};
     MediaPicker mediaPicker = MediaPicker.getInstance();
