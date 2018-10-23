@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 27
-    buildToolsVersion "28.0.0"
+    buildToolsVersion "28.0.3"
 
     defaultConfig {
         applicationId "com.eagle.mediapickerdemo"
@@ -29,7 +29,11 @@ dependencies {
         exclude module: 'support-v4'
     }
 
-
+//    compile ('com.lzy.widget:imagepicker:0.1.4'){
+//        exclude module: 'support-v4'
+//    }
 //    compile project(':mediapicker')
-    compile 'com.gitee.eagleyes:MediaPicker:1.1.1-release1'
+    compile ('com.eagle.android.widget:mediapicker:1.1.5-release'){
+        exclude module: 'support-v4'
+    }
 }
