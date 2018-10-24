@@ -191,8 +191,9 @@ public class MediaGridAdapter extends BaseAdapter {
             }
             if (this.mediaType == MediaDataSource.VIDEO) {
                 byte[] videoPhotoBytes = VideoTools.getVideoPhotoBytes(mediaItem.path, MediaStore.Images.Thumbnails.MINI_KIND);
-                Glide.with(mActivity)
-                        .load(videoPhotoBytes != null ? videoPhotoBytes : "")
+                if (videoPhotoBytes == null) Glide.with(mActivity).load(R.mipmap.default_image).into(holder.ivThumb);
+                else Glide.with(mActivity)
+                        .load(videoPhotoBytes)
                         .error(R.mipmap.default_image)           //设置错误图片
                         .placeholder(R.mipmap.default_image)     //设置占位图片
                         .diskCacheStrategy(DiskCacheStrategy.ALL)//缓存全尺寸

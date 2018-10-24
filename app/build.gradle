@@ -32,8 +32,8 @@ dependencies {
 //    compile ('com.lzy.widget:imagepicker:0.1.4'){
 //        exclude module: 'support-v4'
 //    }
-//    compile project(':mediapicker')
-    compile ('com.eagle.android.widget:mediapicker:1.1.5-release'){
-        exclude module: 'support-v4'
-    }
+    compile project(':mediapicker')
+//    compile ('com.eagle.android.widget:mediapicker:1.1.5-release'){
+//        exclude module: 'support-v4'
+//    }
 }
