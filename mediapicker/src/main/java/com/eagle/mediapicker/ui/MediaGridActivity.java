@@ -391,6 +391,12 @@ public class MediaGridActivity extends MediaBaseActivity implements MediaDataSou
     }
 
     @Override
+    protected void onResume() {
+        // fixme 返回界面时数据错乱，问题应该出在这
+        super.onResume();
+    }
+
+    @Override
     public void onBackPressed() {
         super.onBackPressed();
         finish();

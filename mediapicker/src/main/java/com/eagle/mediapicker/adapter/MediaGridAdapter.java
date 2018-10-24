@@ -189,7 +189,7 @@ public class MediaGridAdapter extends BaseAdapter {
             } else {
                 holder.cbCheck.setVisibility(View.GONE);
             }
-            if (this.mediaType == MediaDataSource.VIDEO) {
+            if (this.mediaType == MediaDataSource.VIDEO) {// todo 先尝试使用视频缩略图 else =>
                 byte[] videoPhotoBytes = VideoTools.getVideoPhotoBytes(mediaItem.path, MediaStore.Images.Thumbnails.MINI_KIND);
                 if (videoPhotoBytes == null) Glide.with(mActivity).load(R.mipmap.default_image).into(holder.ivThumb);
                 else Glide.with(mActivity)
