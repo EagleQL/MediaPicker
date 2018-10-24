@@ -190,8 +190,9 @@ public class MediaGridAdapter extends BaseAdapter {
                 holder.cbCheck.setVisibility(View.GONE);
             }
             if (this.mediaType == MediaDataSource.VIDEO) {
+                byte[] videoPhotoBytes = VideoTools.getVideoPhotoBytes(mediaItem.path, MediaStore.Images.Thumbnails.MINI_KIND);
                 Glide.with(mActivity)
-                        .load(VideoTools.getVideoPhotoBytes(mediaItem.path, MediaStore.Images.Thumbnails.MINI_KIND))
+                        .load(videoPhotoBytes != null ? videoPhotoBytes : "")
                         .error(R.mipmap.default_image)           //设置错误图片
                         .placeholder(R.mipmap.default_image)     //设置占位图片
                         .diskCacheStrategy(DiskCacheStrategy.ALL)//缓存全尺寸

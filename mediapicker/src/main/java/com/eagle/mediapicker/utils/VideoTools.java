@@ -76,6 +76,7 @@ public  class VideoTools {
     }
 
     public static byte[] getVideoPhotoBytes(String videoPath, int kind){
+        if (videoPath == null || videoPath.trim().isEmpty()) return null;
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         VideoTools.getVideoPhoto(videoPath, MediaStore.Images.Thumbnails.MINI_KIND).compress(Bitmap.CompressFormat.JPEG, 96, baos);
         return baos.toByteArray();
