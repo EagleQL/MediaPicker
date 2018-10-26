@@ -94,7 +94,7 @@ public class MediaPageAdapter extends PagerAdapter {
             imageView.setLayoutParams(new android.widget.RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT));
             imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
             Glide.with(mActivity)
-                    .load(VideoTools.getVideoPhotoBytes(mediaItem.path, MediaStore.Images.Thumbnails.MINI_KIND))
+                    .load(mediaItem.path)
                     .into(imageView);
             gsyVideoPlayer.setThumbImageView(imageView);
             gsyVideoPlayer.getThumbImageViewLayout().setVisibility(View.VISIBLE);
