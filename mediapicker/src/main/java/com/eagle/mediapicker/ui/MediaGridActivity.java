@@ -241,6 +241,7 @@ public class MediaGridActivity extends MediaBaseActivity implements MediaDataSou
      * 创建弹出的ListView
      */
     private void createPopupFolderList(int width, int height) {
+        // fixme folder错乱
         mFolderPopupWindow = new ListPopupWindow(this);
         mFolderPopupWindow.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         mFolderPopupWindow.setAdapter(getMediaFolderAdapter(mediaType));

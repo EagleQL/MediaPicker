@@ -66,6 +66,7 @@ public class MediaPageAdapter extends PagerAdapter {
 
     @Override
     public Object instantiateItem(ViewGroup container, int position) {
+        if (gsyVideoPlayer != null) resetVideoPlayer();
         final MediaItem mediaItem = medias.get(position);
         if (mediaItem.isPic()) {
             PhotoView photoView = new PhotoView(mActivity);
@@ -150,12 +151,16 @@ public class MediaPageAdapter extends PagerAdapter {
             ImageView imageView2 = new ImageView(mActivity);
             Glide.with(mActivity)
                     .load(mediaItem.path)
-                    .error(R.mipmap.default_image)           //设置错误图片
-                    .placeholder(R.mipmap.default_image)     //设置占位图片
-                    .diskCacheStrategy(DiskCacheStrategy.ALL)//缓存全尺寸
                     .into(imageView2);
             return imageView2;
         }
+    }
+
+    private void resetVideoPlayer() {
+        GSYVideoManager.releaseAllVideos();
+        if (orientationUtils != null)
+            orientationUtils.releaseListener();
+
     }
 
     @Override
@@ -170,10 +175,6 @@ public class MediaPageAdapter extends PagerAdapter {
 
     @Override
     public void destroyItem(ViewGroup container, int position, Object object) {
-//        if (JCVideoPlayer.backPress()) {
-//            return;
-//        }
-//        JCVideoPlayer.releaseAllVideos();
 
         GSYVideoManager.releaseAllVideos();
         if (orientationUtils != null)

@@ -24,9 +24,9 @@ import com.eagle.mediapicker.view.SuperCheckBox;
 import java.util.ArrayList;
 
 /**
- * @Description  媒体文件网格列表界面适配器
- * @Author  eagle
- * @Date  21:13 2018/10/18
+ * @Description 媒体文件网格列表界面适配器
+ * @Author eagle
+ * @Date 21:13 2018/10/18
  * @Param
  * @return
  **/
@@ -111,8 +111,7 @@ public class MediaGridAdapter extends BaseAdapter {
                         mediaPicker.takePicture(mActivity, MediaPicker.REQUEST_CODE_TAKE_PHOTO); // mark 拍摄照片
                     }
                 });
-            }
-            else if (mediaType == MediaDataSource.VIDEO) {
+            } else if (mediaType == MediaDataSource.VIDEO) {
                 cameraText.setText("拍摄视频");
                 convertView.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -120,8 +119,7 @@ public class MediaGridAdapter extends BaseAdapter {
                         mediaPicker.recordVideo(mActivity, MediaPicker.REQUEST_CODE_RECORD_VIDEO); // mark 拍摄视频
                     }
                 });
-            }
-            else if (mediaType == MediaDataSource.AUDIO) {
+            } else if (mediaType == MediaDataSource.AUDIO) {
                 cameraText.setText("录制音频");
                 convertView.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -190,21 +188,21 @@ public class MediaGridAdapter extends BaseAdapter {
                 holder.cbCheck.setVisibility(View.GONE);
             }
             if (this.mediaType == MediaDataSource.VIDEO) {// todo 先尝试使用视频缩略图 else =>
-                byte[] videoPhotoBytes = VideoTools.getVideoPhotoBytes(mediaItem.path, MediaStore.Images.Thumbnails.MINI_KIND);
-                if (videoPhotoBytes == null) Glide.with(mActivity).load(R.mipmap.default_image).into(holder.ivThumb);
-                else Glide.with(mActivity)
-                        .load(videoPhotoBytes)
-                        .error(R.mipmap.default_image)           //设置错误图片
-                        .placeholder(R.mipmap.default_image)     //设置占位图片
-                        .diskCacheStrategy(DiskCacheStrategy.ALL)//缓存全尺寸
+//                byte[] videoPhotoBytes = VideoTools.getVideoPhotoBytes(mediaItem.path, MediaStore.Images.Thumbnails.MINI_KIND);
+//                if (videoPhotoBytes == null)
+//                    Glide.with(mActivity).load(R.mipmap.default_image).into(holder.ivThumb);
+//                else
+                Glide.with(mActivity)
+                        .load(mediaItem.path)
                         .into(holder.ivThumb);
-            }
-            else {
+            } else {
                 mediaPicker.getImageLoader().displayImage(mActivity, mediaItem.path, holder.ivThumb, mMediaSize, mMediaSize); //显示图片
             }
         }
-        if (medias.size() < 10 && position + 1 == medias.size()) onMediaRenderListener.OnMediaRenderFinished(position + 1);
-        if (medias.size() > 10 && position + 1 == 9) onMediaRenderListener.OnMediaRenderFinished(position + 1);
+        if (medias.size() < 10 && position + 1 == medias.size())
+            onMediaRenderListener.OnMediaRenderFinished(position + 1);
+        if (medias.size() > 10 && position + 1 == 9)
+            onMediaRenderListener.OnMediaRenderFinished(position + 1);
         return convertView;
     }
 
@@ -234,7 +232,7 @@ public class MediaGridAdapter extends BaseAdapter {
         void OnMediaRenderFinished(int count);
     }
 
-    public void setOnMediaRenderListener(OnMediaRenderListener onMediaRenderListener){
+    public void setOnMediaRenderListener(OnMediaRenderListener onMediaRenderListener) {
         this.onMediaRenderListener = onMediaRenderListener;
     }
 }
